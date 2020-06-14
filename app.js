@@ -174,32 +174,52 @@
 // console.log(isPalindrome(s));
 /////////////////////////////////////////////////////////////////////
 
-// function checkIsomorphic(str1, str2) {
-//   let arr1 = str1.split("");
-//   let arr2 = str2.split("");
-// }
+let s1 = `paper`;
+let s2 = `title`;
+function checkIsomorphic(str1, str2) {
+  if (str1.length !== str2.length) return false; //lengths different, then strings cant be isomporphic
+  let map1 = {},
+    map2 = {}; //two maps
+  for (let i = 0; i < str1.length; i++) {
+    if (
+      typeof map1[str1[i]] == "undefined" &&
+      typeof map2[str2[i]] == "undefined"
+    ) {
+      map1[str1[i]] = str2[i];
+      map2[str2[i]] = str1[i]; //map both strings
+    } else {
+      if (map1[str1[i]] !== str2[i] && map2[str2[i]] !== str1[i]) {
+        //check if they map to unique element
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+console.log(checkIsomorphic(s1, s2));
 
 //////////////////////////////////////////////////////////////////////
 
-var array = [1, 2, 0, 2];
+// var array = [1, 2, 0, 2];
+// function stack(arr) {
+//   var inputStack = []; // First stack
+//   var outputStack = []; // Second stack
 
-function stack(arr) {
-  var inputStack = []; // First stack
-  var outputStack = []; // Second stack
+//   // push elements in stack
+//   // enqueue
+//   arr.forEach((element) => {
+//     inputStack.push(element);
+//   });
+//   console.log("insert from end of queue : " + inputStack);
 
-  // push elements in stack
-  // enqueue
-  arr.forEach((element) => {
-    inputStack.push(element);
-  });
-  console.log("insert from end of queue : " + inputStack);
+//   //   // pop last first element of inputStack and add in outputstack
+//   //   // dequeue
+//   inputStack.forEach((element) => {
+//     outputStack.unshift(element);
+//   });
+//   console.log("delete from front of queue : " + outputStack);
+// }
+// stack(array);
 
-  //   // pop last first element of inputStack and add in outputstack
-  //   // dequeue
-  inputStack.forEach((element) => {
-    outputStack.unshift(element);
-  });
-  console.log("delete from front of queue : " + outputStack);
-}
-
-stack(array);
+//////////////////////////////////////////////////////////////////////

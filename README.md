@@ -42,14 +42,13 @@ _A mostly reasonable collection of technical software development interview ques
     }
     return maxProduct;
   }
+  console.log(computeProduct(unsortedArray));
   ```
 
-console.log(computeProduct(unsortedArray));
-
-````
-
 <a name="array--consecutive--sum"></a><a name="1.2"></a>
+
 - **[1.2](#array--consecutive--sum) Being told that an unsorted array contains (n - 1) of n consecutive numbers (where the bounds are defined), find the missing number in `O(n)` time**
+
 ```javascript
 // The output of the function should be 8
 var arrayOfIntegers = [2, 5, 1, 4, 9, 6, 3, 7];
@@ -70,9 +69,8 @@ function findMissinngNumber(arr) {
 
   return sumOfConsicutiveNumber - sum;
 }
-
 console.log(findMissinngNumber(arrayOfIntegers));
-````
+```
 
 <a name="array--unique"></a><a name="1.3"></a>
 
@@ -152,35 +150,37 @@ console.log(findMissinngNumber(arrayOfIntegers));
 <a name="array--intersection"></a><a name="1.6"></a>
 
 - **[1.6](#array--intersection) Find the intersection of two arrays. An intersection would be the common elements that exists within both arrays. In this case, these elements should be unique!**
+
   ```javascript
   var firstArray = [2, 2, 4, 1];
   var secondArray = [1, 2, 0, 2];
+
+  //Write your program here
+  function findIntersection(arr1, arr2) {
+    let result = [];
+    for (let i = 0; i < arr1.length; ++i) {
+      for (let j = 0; j < arr2.length; ++j) {
+        if (arr1[i] == arr2[j]) {
+          if (!result.includes(arr1[i])) {
+            result.push(arr1[i]);
+          }
+        }
+      }
+    }
+    console.log(result);
+  }
+  findIntersection(firstArray, secondArray);
   ```
-
-//Write your program here
-function findIntersection(arr1, arr2) {
-let result = [];
-for (let i = 0; i < arr1.length; ++i) {
-for (let j = 0; j < arr2.length; ++j) {
-if (arr1[i] == arr2[j]) {
-if (!result.includes(arr1[i])) {
-result.push(arr1[i]);
-}
-}
-}
-}
-console.log(result);
-}
-findIntersection(firstArray, secondArray);
-
-````
 
 **[⬆ back to top](#table-of-contents)**
 
 ## Strings
+
 <a name="string--reverse"></a><a name="2.1"></a>
+
 - **[2.1](#string--reverse) Given a string, reverse each word in the sentence**
-`"Welcome to this Javascript Guide!"` should be become `"emocleW ot siht tpircsavaJ !ediuG"`
+  `"Welcome to this Javascript Guide!"` should be become `"emocleW ot siht tpircsavaJ !ediuG"`
+
 ```javascript
 var string = "Welcome to this Javascript Guide!";
 
@@ -197,7 +197,7 @@ function reverseString(str) {
   console.log(result);
 }
 reverseString(string);
-````
+```
 
 <a name="string--anagram"></a><a name="2.2"></a>
 
@@ -254,26 +254,51 @@ reverseString(string);
   console.log(isPalindrome(s));
   ```
 
+```
 <a name="string--isIsomorphic"></a><a name="2.4"></a>
 
 - **[2.4](#string--palindrome) Check if a given string is a isomorphic**
+  For two strings to be isomorphic, all occurrences of a character in string A can be replaced with another character
+  to get string B. The order of the characters must be preserved. There must be one-to-one mapping for ever char of
+  string A to every char of string B.
 
-  ```
-    For two strings to be isomorphic, all occurrences of a character in string A can be replaced with another character
-    to get string B. The order of the characters must be preserved. There must be one-to-one mapping for ever char of
-    string A to every char of string B.
+`paper` and `title` would return true.
+`egg` and `sad` would return false.
+`dgg` and `add` would return true.
 
-    `paper` and `title` would return true.
-    `egg` and `sad` would return false.
-    `dgg` and `add` would return true.
+javascript
+isIsomorphic("egg", 'add'); // true
+isIsomorphic("paper", 'title'); // true
+isIsomorphic("kick", 'side'); // false
+```
 
-    javascript
-    isIsomorphic("egg", 'add'); // true
-    isIsomorphic("paper", 'title'); // true
-    isIsomorphic("kick", 'side'); // false
+//Write your program here
+function checkIsomorphic(str1, str2) {
+if (str1.length !== str2.length) return false; //lengths different, then strings cant be isomporphic
+let map1 = {},
+map2 = {}; //two maps
+for (let i = 0; i < str1.length; i++) {
+if (
+typeof map1[str1[i]] == "undefined" &&
+typeof map2[str2[i]] == "undefined"
+) {
+map1[str1[i]] = str2[i];
+map2[str2[i]] = str1[i]; //map both strings
+} else {
+if (map1[str1[i]] !== str2[i] && map2[str2[i]] !== str1[i]) {
+//check if they map to unique element
+return false;
+}
+}
+}
+return true;
+}
 
-    //Write your program here
-  ```
+console.log(checkIsomorphic(s1, s2));
+
+```
+
+```
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -283,32 +308,32 @@ reverseString(string);
 
 - **[3.1](#stack-queue--stack-as-queue) Implement enqueue and dequeue using only two stacks**
 
-  ```javascript
+```javascript
+var inputStack = []; // First stack
+var outputStack = []; // Second stack
+
+//Write your program here
+var array = [1, 2, 0, 2];
+function stack(arr) {
   var inputStack = []; // First stack
   var outputStack = []; // Second stack
 
-  //Write your program here
-  var array = [1, 2, 0, 2];
-  function stack(arr) {
-    var inputStack = []; // First stack
-    var outputStack = []; // Second stack
+  // push elements in stack
+  // enqueue
+  arr.forEach((element) => {
+    inputStack.push(element);
+  });
+  console.log("insert from end of queue : " + inputStack);
 
-    // push elements in stack
-    // enqueue
-    arr.forEach((element) => {
-      inputStack.push(element);
-    });
-    console.log("insert from end of queue : " + inputStack);
-
-    //   // pop last first element of inputStack and add in outputstack
-    //   // dequeue
-    inputStack.forEach((element) => {
-      outputStack.unshift(element);
-    });
-    console.log("delete from front of queue : " + outputStack);
-  }
-  stack(array);
-  ```
+  //   // pop last first element of inputStack and add in outputstack
+  //   // dequeue
+  inputStack.forEach((element) => {
+    outputStack.unshift(element);
+  });
+  console.log("delete from front of queue : " + outputStack);
+}
+stack(array);
+```
 
 <a name="stack-queue--parentheses-balancing"></a><a name="3.2"></a>
 
@@ -372,3 +397,7 @@ reverseString(string);
   ```
 
 **[⬆ back to top](#table-of-contents)**
+
+```
+
+```

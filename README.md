@@ -288,6 +288,26 @@ reverseString(string);
   var outputStack = []; // Second stack
 
   //Write your program here
+  var array = [1, 2, 0, 2];
+  function stack(arr) {
+    var inputStack = []; // First stack
+    var outputStack = []; // Second stack
+
+    // push elements in stack
+    // enqueue
+    arr.forEach((element) => {
+      inputStack.push(element);
+    });
+    console.log("insert from end of queue : " + inputStack);
+
+    //   // pop last first element of inputStack and add in outputstack
+    //   // dequeue
+    inputStack.forEach((element) => {
+      outputStack.unshift(element);
+    });
+    console.log("delete from front of queue : " + outputStack);
+  }
+  stack(array);
   ```
 
 <a name="stack-queue--parentheses-balancing"></a><a name="3.2"></a>

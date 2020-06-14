@@ -155,20 +155,51 @@
 // console.log(findAnagrams(firstWord, secondWord));
 //////////////////////////////////////////////////////////////////
 
-let s = "race car";
-function isPalindrome(str) {
-  // remove symbols and comma, dots form string
-  // contains only  characters
-  var re = /[^A-Za-z0-9]/g;
-  let str1 = str.toLowerCase().replace(re, "");
+// let s = "race car";
+// function isPalindrome(str) {
+//   // remove symbols and comma, dots form string
+//   // contains only  characters
+//   var re = /[^A-Za-z0-9]/g;
+//   let str1 = str.toLowerCase().replace(re, "");
 
-  //   let revString = str1.split("").join("");
-  var len = str1.length;
-  for (let i = 0; i < len / 2; i++) {
-    if (str1[i] !== str1[len - 1 - i]) {
-      return false;
-    }
-  }
-  return true;
+//   //   let revString = str1.split("").join("");
+//   var len = str1.length;
+//   for (let i = 0; i < len / 2; i++) {
+//     if (str1[i] !== str1[len - 1 - i]) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+// console.log(isPalindrome(s));
+/////////////////////////////////////////////////////////////////////
+
+// function checkIsomorphic(str1, str2) {
+//   let arr1 = str1.split("");
+//   let arr2 = str2.split("");
+// }
+
+//////////////////////////////////////////////////////////////////////
+
+var array = [1, 2, 0, 2];
+
+function stack(arr) {
+  var inputStack = []; // First stack
+  var outputStack = []; // Second stack
+
+  // push elements in stack
+  // enqueue
+  arr.forEach((element) => {
+    inputStack.push(element);
+  });
+  console.log("insert from end of queue : " + inputStack);
+
+  //   // pop last first element of inputStack and add in outputstack
+  //   // dequeue
+  inputStack.forEach((element) => {
+    outputStack.unshift(element);
+  });
+  console.log("delete from front of queue : " + outputStack);
 }
-console.log(isPalindrome(s));
+
+stack(array);
